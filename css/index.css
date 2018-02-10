@@ -1,0 +1,38 @@
+
+main{
+  position: absolute;
+  height: 800px;
+  width: 480px;
+
+}
+
+body{
+  margin: 0;
+}
+
+.base{
+
+  left: 15%;
+  bottom: 0;
+  position: absolute;
+  visibility: visible;
+
+}
+
+
+
+.torre{
+  right: 0%;
+
+  bottom: 230px;
+  position: absolute;
+  visibility: visible;
+  transition: 20s;
+  transform: translate(-1000px,0px);
+
+
+}
+
+.torre:hover{
+
+}
