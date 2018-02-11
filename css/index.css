@@ -21,18 +21,12 @@ body{
 
 
 
-.torre{
+.torrePos{
   right: 0%;
 
   bottom: 230px;
   position: absolute;
   visibility: visible;
-  transition: 20s;
-  transform: translate(-1000px,0px);
 
-
-}
-
-.torre:hover{
 
 }
