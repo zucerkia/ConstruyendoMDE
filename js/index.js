@@ -16,14 +16,22 @@ var height = canvas.getAttribute("height");
 $(document).ready(function(){
 
   var torre = $('.torre');
-  var pos='300px'
-    var neg='-300px';
+  //var idTorre =$('#torre');
+
+    var pos='350px'
+    var neg='-'+pos;
     var direccion= pos;
+
+    var animacion = setInterval(animar,1000);
+
 
 
     $("button").click(function(){
 
-      setInterval(animar,1000);
+        clearInterval(animacion);
+        torre.stop();
+        $("div").removeClass('.torre');
+        //var animacion = setInterval(animar,1000);
 
 
     });
