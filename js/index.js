@@ -26,7 +26,7 @@ $(document).ready(function(){
 
 
 
-    $("button").click(function(){
+    $("main").click(function(){
 
         clearInterval(animacion);
         torre.stop();
