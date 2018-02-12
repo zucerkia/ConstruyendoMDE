@@ -23,12 +23,12 @@ $(document).ready(function(){
     var neg='-'+pos;
     var direccion= pos;
     var numBloques=2;
-    var distBase=50;
+    var distBase=30;
     var velocidad = 2000;
 
 
     //agregarBloque(distBase*numBloques)
-    var animacion = setInterval(animar,velocidad);
+    var animacion = setInterval(animar,2000);
 
 
 
@@ -39,8 +39,9 @@ $(document).ready(function(){
 
         $("#torre").removeClass('.torre');
 
-        agregarBloque(distBase*numBloques);
+        agregarBloque(distBase*numBloques,numBloques);
         numBloques++;
+        console.log(numBloques);
         //setInterval(animar,1000);
 
 
@@ -60,8 +61,9 @@ $(document).ready(function(){
          }
       }
 
-      function agregarBloque(distBase){
-        $("main").append("<div class='torrePos torre' id='torre' style='bottom:"+distBase+"px'><img src='/img/modulo2.png'></div>");
+      function agregarBloque(distBase,numBloques){
+        var distancia = distBase+130;
+        $("main").append("<div class='torrePos torre' id='torre' style='bottom:"+distancia+"px'><img src='/img/modulo"+numBloques+".png'></div>");
       }
 /*
     requestAnimationFrame(cycle);
