@@ -16,22 +16,34 @@ var height = canvas.getAttribute("height");
 $(document).ready(function(){
 
   var torre = $('.torre');
+  var escenario = $('.escenario');
   //var idTorre =$('#torre');
 
     var pos='350px'
     var neg='-'+pos;
     var direccion= pos;
+    var numBloques=2;
+    var distBase=50;
+    var velocidad = 2000;
 
-    var animacion = setInterval(animar,1000);
+
+    //agregarBloque(distBase*numBloques)
+    var animacion = setInterval(animar,velocidad);
 
 
 
     $("main").click(function(){
 
+
+
         clearInterval(animacion);
         torre.stop();
-        $("div").removeClass('.torre');
-        //var animacion = setInterval(animar,1000);
+
+        $("#torre").removeClass('.torre');
+
+        escenario.appendChild(agregarBloque(distBase*numBloques));
+        numBloques++;
+        //setInterval(animar,1000);
 
 
     });
@@ -40,14 +52,18 @@ $(document).ready(function(){
       function animar(){
 
         if(direccion==pos){
-          torre.animate({left: direccion}, 1000);
+          torre.animate({left: direccion}, velocidad);
           direccion=neg;
          }
          else{
-          torre.animate({left: direccion}, 1000);
+          torre.animate({left: direccion}, velocidad);
       direccion=pos;
 
          }
+      }
+
+      function agregarBloque(distBase){
+        $("main").append("<div class='torrePos torre' id='torre' style='bottom:"+distBase+"px'><img src='/img/modulo1.png'></div>");
       }
 /*
     requestAnimationFrame(cycle);
