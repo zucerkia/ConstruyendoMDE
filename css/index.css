@@ -10,7 +10,7 @@ body{
   margin: 0;
 }
 
-.base{
+.inicio {
 
   bottom: 0;
   position: absolute;
@@ -18,13 +18,11 @@ body{
 
 }
 
+.boton{
+  bottom:15%;
+  left: 250px;
+}
 
-.torrePos{
-  right: 0%;
-
-  bottom: 22px;
-  position: absolute;
-  visibility: visible;
-
+.boton: hover{
 
 }

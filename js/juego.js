@@ -41,7 +41,7 @@ $(document).ready(function(){
 
         $("#torre").removeClass('.torre');
 
-        escenario.appendChild(agregarBloque(distBase*numBloques));
+        agregarBloque(distBase*numBloques);
         numBloques++;
         //setInterval(animar,1000);
 
@@ -63,7 +63,7 @@ $(document).ready(function(){
       }
 
       function agregarBloque(distBase){
-        $("main").append("<div class='torrePos torre' id='torre' style='bottom:"+distBase+"px'><img src='/img/modulo1.png'></div>");
+        $("main").append("<div class='torrePos torre' id='torre' style='bottom:"+distBase+"px'><img src='/img/modulo2.png'></div>");
       }
 /*
     requestAnimationFrame(cycle);
