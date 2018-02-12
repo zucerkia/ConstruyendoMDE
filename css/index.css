@@ -21,8 +21,13 @@ body{
 .boton{
   bottom:15%;
   left: 250px;
+  position: absolute;
+  visibility: visible;
+
+
 }
 
-.boton: hover{
+.boton:active{
+    background-image: url("../img/botonPlayPresionado.png");
 
 }

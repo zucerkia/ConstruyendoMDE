@@ -34,8 +34,6 @@ $(document).ready(function(){
 
     $("main").click(function(){
 
-
-
         clearInterval(animacion);
         torre.stop();
 
