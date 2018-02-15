@@ -59,6 +59,20 @@ $(document).ready(function(){
       }
       else{
 
+        var temp = "<div class='pausa'><img src='/img/gano.png'></div>"
+        $("main").append(temp);
+
+
+
+/*
+
+<div class="pausa">
+  <img src="/img/humo.gif" alt="">
+
+</div>
+
+
+
           parseInt(altura)+40;
 
           main.css("height",altura+"px");
@@ -72,7 +86,7 @@ $(document).ready(function(){
           numBloques++;
           console.log(numBloques);
 
-
+*/
 
       }
     });
@@ -100,6 +114,14 @@ $(document).ready(function(){
         console.log(contador_torre);
         $("main").append(temp);
         torre = $("#torre_"+contador_torre);
+      }
+
+      function perder(){
+        var temp = "<div>"
+
+      }
+      function ganar(){
+
       }
 
 
