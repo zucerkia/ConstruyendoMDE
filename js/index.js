@@ -1,5 +1,8 @@
 
 
+
+/*
+
 var boton = $('#link');
 
 
@@ -16,3 +19,4 @@ $(document).ready(function(){
       });
 
 });
+*/
