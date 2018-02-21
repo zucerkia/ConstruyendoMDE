@@ -1,4 +1,6 @@
 
+
+/*
 main{
   position: absolute;
   height: 800px;
@@ -30,4 +32,10 @@ body{
 .boton:active{
     background-image: url("../img/botonPlayPresionado.png");
 
+}
+*/
+html, body{
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
