@@ -42,7 +42,7 @@ var playGame = {
 }
 var map ={	
 	preload:function() {
-		this.load.image('fondoMapa', 'img/mapa/fondoMapa.jpg ');
+		this.load.image('fondoMapa', 'img/comun/fondoMapa.jpg ');
 		this.load.spritesheet('btnPlayMapa','img/mapa/play.png');
 		this.load.spritesheet('btnCreditosMapa','img/mapa/creditos.png');
 		this.load.spritesheet('btnInfoMapa','img/mapa/informacion.png');
@@ -62,14 +62,32 @@ var map ={
 
 var credits ={
 	preload:function() {
-		this.load.image('fondoMapa', 'img/mapa/fondoMapa.jpg ');
+		this.load.image('fondoMapa', 'img/comun/fondoMapa.jpg ');
 		this.load.image('creditos','img/creditos/creditos.png ');
-		this.load.spritesheet('btnAtras','img/creditos/btnAtras.png');
+		this.load.spritesheet('btnAtras','img/comun/btnAtras.png');
 		
 	},
 	create:function() {
 		this.game.add.sprite(0, 0,'fondoMapa');
 		this.game.add.sprite(0, 0,'creditos');
+		this.btnAtras = this.game.add.button(game.world.centerX,game.world.centerY,'btnAtras',goToMap,this);
+		this.btnAtras.anchor.setTo(0.3,-2.5); 	
+	},
+	 update:function() {
+	}
+
+}
+
+var info ={
+	preload:function() {
+		this.load.image('fondoMapa', 'img/comun/fondoMapa.jpg ');
+		this.load.image('informacion','img/informacion/informacion.png ');
+		this.load.spritesheet('btnAtras','img/comun/btnAtras.png');
+		
+	},
+	create:function() {
+		this.game.add.sprite(0, 0,'fondoMapa');
+		this.game.add.sprite(0, 0,'informacion');
 		this.btnAtras = this.game.add.button(game.world.centerX,game.world.centerY,'btnAtras',goToMap,this);
 		this.btnAtras.anchor.setTo(0.3,-2.5); 	
 	},
@@ -88,12 +106,14 @@ function goToGame() {
     game.state.start('Map');
 }
 function goToInfo() {
-    game.state.start('Map');
+    game.state.start('Info');
 }
 
 	game.state.add('Playgame', playGame);
 	game.state.add('Map', map);
 	game.state.add('Credits', credits);
+	game.state.add('Info', info);
+
 
 
 	game.state.start('Playgame');
