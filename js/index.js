@@ -95,6 +95,29 @@ var info ={
 	}
 
 }
+
+var initGame={
+	preload:function() {
+		this.load.image('fondoJuego', 'img/juego/fondo.jpg ');
+		this.load.image('escenario','img/juego/escenario.png ');
+		this.load.spritesheet('btnOpciones','img/juego/btnOpciones.png');
+		
+	},
+	create:function() {
+		this.game.add.sprite(0, 0,'fondoJuego');
+		this.game.add.sprite(0, 0,'escenario');
+		this.btnOpciones = this.game.add.button(game.world.centerX,game.world.centerY,'btnOpciones',goToOptions,this);
+		this.btnOpciones.anchor.setTo(-2,7); 	
+	},
+	 update:function() {
+	}
+
+}
+
+var options = {
+
+}
+
 function goToMap() {
     game.state.start('Map');
 }
@@ -103,16 +126,23 @@ function goToCreditos() {
     game.state.start('Credits');
 }
 function goToGame() {
-    game.state.start('Map');
+    game.state.start('InitGame');
 }
 function goToInfo() {
     game.state.start('Info');
+}
+function goToOptions() {
+    game.state.start('Options');
 }
 
 	game.state.add('Playgame', playGame);
 	game.state.add('Map', map);
 	game.state.add('Credits', credits);
 	game.state.add('Info', info);
+	game.state.add('InitGame', initGame);
+	game.state.add('Options', options);
+
+
 
 
 
