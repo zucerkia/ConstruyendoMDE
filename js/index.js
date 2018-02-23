@@ -44,22 +44,32 @@ var map ={
 	preload:function() {
 		this.load.image('fondoMapa', 'img/mapa/fondoMapa.jpg ');
 		this.load.spritesheet('btnPlayMapa','img/mapa/play.png');
-		this.load.spritesheet('btnCreditosMapa','img/mapa/creditos.png',70,65);
-		this.load.spritesheet('btnInfoMapa','img/mapa/informacion.png',70,65);
+		this.load.spritesheet('btnCreditosMapa','img/mapa/creditos.png');
+		this.load.spritesheet('btnInfoMapa','img/mapa/informacion.png');
 	},
 	create:function() {
 		this.game.add.sprite(0, 0,'fondoMapa');
-		this.btnPlayMapa = this.game.add.button(game.world.centerX,game.world.centerY,'btnPlayMapa',game,this);
-		this.btnPlayMapa.anchor.setTo(-0.20,-1.5);
-		this.btnCreditos = this.game.add.button(game.world.centerX,game.world.centerY,'btnCreditosMapa',creditos,this,1,1,1);
-		this.btnCreditos.anchor.setTo(0.5,0.5);
-		this.btnInfo = this.game.add.button(game.world.centerX,game.world.centerY,'btnInfoMapa',info,this,0,0,0);
-		this.btnInfo.anchor.setTo(0.5,0.5); 	
+		this.btnPlayMapa = this.game.add.button(game.world.centerX,game.world.centerY,'btnPlayMapa',goToGame,this);
+		this.btnPlayMapa.anchor.setTo(-0.5,-0.8);
+		this.btnCreditos = this.game.add.button(game.world.centerX,game.world.centerY,'btnCreditosMapa',goToCreditos,this);
+		this.btnCreditos.anchor.setTo(-0.7,5.5);
+		this.btnInfo = this.game.add.button(game.world.centerX,game.world.centerY,'btnInfoMapa',goToInfo,this);
+		this.btnInfo.anchor.setTo(2.3,3); 	
 	},
 	 update:function() {
 	}
 };
 function goToMap() {
+    game.state.start('Map');
+}
+
+function goToCreditos() {
+    game.state.start('Map');
+}
+function goToGame() {
+    game.state.start('Map');
+}
+function goToInfo() {
     game.state.start('Map');
 }
 
