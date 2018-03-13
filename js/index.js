@@ -20,9 +20,15 @@ $(document).ready(function(){
 
 });
 */
+var bloques;
+
+
 var gameOptions={
 	gameWidth:480,
-	gameHeight:800
+	gameHeight:800,
+	posx:130,
+	posy:500,
+	movimiento:true
 }
 var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.AUTO, 'game');
 var playGame = {
@@ -101,11 +107,35 @@ var initGame={
 		this.load.image('fondoJuego', 'img/juego/fondo.jpg ');
 		this.load.image('escenario','img/juego/escenario.png ');
 		this.load.spritesheet('btnOpciones','img/juego/btnOpciones.png');
+		this.load.image('base','img/juego/base.png');
+		this.load.image('bloque','img/juego/bloque.png');
+		
 		
 	},
 	create:function() {
 		this.game.add.sprite(0, 0,'fondoJuego');
 		this.game.add.sprite(0, 0,'escenario');
+
+		this.base = this.game.add.sprite(gameOptions.posx,gameOptions.posy,'base');
+
+		this.bloques = this.game.add.group();
+		this.bloques.enableBody = true;
+		this.bloques.physicsBodyType = Phaser.Physics.ARCADE;
+
+		for (var i = 0; i < 1; i++) {
+
+			this.bloque = this.bloques.create(0,gameOptions.posy-200,'bloque');
+
+		//fisica del bloque
+
+			this.bloque.body.collideWorldBounds = true;
+
+			
+				this.bloque.body.gravity.x=1000;
+				this.bloque.body.bounce.setTo(1);
+			
+			//this.bloque.body.gravity.y= 100;
+		}
 		this.btnOpciones = this.game.add.button(game.world.centerX,game.world.centerY,'btnOpciones',goToOptions,this);
 		this.btnOpciones.anchor.setTo(-2,7); 	
 	},
