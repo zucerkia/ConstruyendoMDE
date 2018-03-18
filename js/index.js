@@ -23,7 +23,8 @@ $(document).ready(function(){
 
 var bloques;
 var bases;
-
+var counter = 0;
+var step = Math.PI * 2 / 360;
 
 
 var gameOptions={
@@ -31,15 +32,45 @@ var gameOptions={
 	gameHeight:800,
 	posx:130,
 	posy:500,
-	movimiento:true
 }
 var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.AUTO, 'game');
-var playGame = {
-	preload:function() {
+
+
+var boot = {
+	preload: function(){
 		game.load.image('fondoInicio', 'img/inicio/fondo.jpg ');
 		game.load.image('imgInicio', 'img/inicio/pantallaDeInicio.png');
 		game.load.spritesheet('btnPlayInicio','img/inicio/playInicio.png',150,111);
+
+		game.load.image('fondoMapa', 'img/comun/fondoMapa.jpg ');
+		game.load.spritesheet('btnPlayMapa','img/mapa/play.png');
+		game.load.spritesheet('btnCreditosMapa','img/mapa/creditos.png');
+		game.load.spritesheet('btnInfoMapa','img/mapa/informacion.png');
+
+		game.load.image('fondoMapa', 'img/comun/fondoMapa.jpg ');
+		game.load.image('creditos','img/creditos/creditos.png ');
+		game.load.spritesheet('btnAtras','img/comun/btnAtras.png');
+
+		game.load.image('fondoMapa', 'img/comun/fondoMapa.jpg ');
+		game.load.image('informacion','img/informacion/informacion.png ');
+		game.load.spritesheet('btnAtras','img/comun/btnAtras.png');
+
+		game.load.image('fondoJuego', 'img/juego/fondo.jpg ');
+		game.load.image('escenario','img/juego/escenario.png ');
+		game.load.spritesheet('btnOpciones','img/juego/btnOpciones.png');
+		game.load.image('base','img/juego/base.png');
+		game.load.image('bloque','img/juego/bloque.png');
+		
 	},
+	create: function(){
+		game.state.start('Playgame');
+
+	}
+}
+
+
+var playGame = {
+	
 	create:function() {
 		game.add.sprite(0, 0,'fondoInicio');
 		game.add.sprite(0,0,'imgInicio');
@@ -50,12 +81,7 @@ var playGame = {
 	}
 }
 var map ={	
-	preload:function() {
-		game.load.image('fondoMapa', 'img/comun/fondoMapa.jpg ');
-		game.load.spritesheet('btnPlayMapa','img/mapa/play.png');
-		game.load.spritesheet('btnCreditosMapa','img/mapa/creditos.png');
-		game.load.spritesheet('btnInfoMapa','img/mapa/informacion.png');
-	},
+	
 	create:function() {
 		game.add.sprite(0, 0,'fondoMapa');
 		var btnPlayMapa = game.add.button(game.world.centerX,game.world.centerY,'btnPlayMapa',goToGame,this);
@@ -70,12 +96,7 @@ var map ={
 }
 
 var credits ={
-	preload:function() {
-		game.load.image('fondoMapa', 'img/comun/fondoMapa.jpg ');
-		game.load.image('creditos','img/creditos/creditos.png ');
-		game.load.spritesheet('btnAtras','img/comun/btnAtras.png');
-		
-	},
+
 	create:function() {
 		game.add.sprite(0, 0,'fondoMapa');
 		game.add.sprite(0, 0,'creditos');
@@ -88,12 +109,7 @@ var credits ={
 }
 
 var info ={
-	preload:function() {
-		game.load.image('fondoMapa', 'img/comun/fondoMapa.jpg ');
-		game.load.image('informacion','img/informacion/informacion.png ');
-		game.load.spritesheet('btnAtras','img/comun/btnAtras.png');
-		
-	},
+
 	create:function() {
 		game.add.sprite(0, 0,'fondoMapa');
 		game.add.sprite(0, 0,'informacion');
@@ -105,16 +121,11 @@ var info ={
 
 }
 
+var base;
+var bloque;
+
 var initGame={
-	preload:function() {
-		game.load.image('fondoJuego', 'img/juego/fondo.jpg ');
-		game.load.image('escenario','img/juego/escenario.png ');
-		game.load.spritesheet('btnOpciones','img/juego/btnOpciones.png');
-		game.load.image('base','img/juego/base.png');
-		game.load.image('bloque','img/juego/bloque.png');
-		
-		
-	},
+	
 	create:function() {
 
 
@@ -126,27 +137,38 @@ var initGame={
 		
 		bases = game.add.group();		
 		bases.enableBody = true;
+		
 
 		bloques = game.add.group();		
 		bloques.enableBody = true;
 
-		var base = bases.create(gameOptions.posx,gameOptions.posy,'base');
+		base = bases.create(gameOptions.posx,gameOptions.posy,'base');
+
+		base.body.setSize(231,55);
+
 		base.body.immovable = true;
 
 
-		for (var i = 0; i < 1; i++) {
+		
 
-			var bloque = bloques.create(gameOptions.posx,gameOptions.posy-200,'bloque');
+
+
+			bloque = bloques.create(-150,gameOptions.posy-200,'bloque');
 			game.physics.arcade.enable(bloque);
+
+
 
 
 			//if(clic){}  cuando se haga clic se habilita la gravedad y el bounce
 
-			//bloque.body.collideWorldBounds = true;
-			bloque.body.bounce.y = 0.3;
-			bloque.body.gravity.y= 300;
+			bloque.body.setSize(231,30);
+			//bloque.body.bounce.y = 0.5;
+			bloque.body.gravity.y= 30;
 			
-		}
+		
+		//game.debug.body(bloque);
+		//game.debug.body(base);
+
 
 		//botones
 		btnOpciones = this.game.add.button(game.world.centerX,game.world.centerY,'btnOpciones',goToOptions,this);
@@ -155,7 +177,14 @@ var initGame={
 	 update:function() {
 
 		var colision = game.physics.arcade.collide(bloques,bases);
+		game.physics.arcade.collide(bloques,bloques);
+
+		var tStep = Math.sin(counter);
+    	bloque.body.x = 120 + tStep * 200;
+    	counter += step;
+
 	}
+
 
 }
 
@@ -180,6 +209,9 @@ function goToOptions() {
     game.state.start('Options');
 }
 
+
+
+	game.state.add('Boot',boot);
 	game.state.add('Playgame', playGame);
 	game.state.add('Map', map);
 	game.state.add('Credits', credits);
@@ -193,7 +225,7 @@ function goToOptions() {
 
 
 
-	game.state.start('Playgame');
+	game.state.start('Boot');
 
 
 /*
