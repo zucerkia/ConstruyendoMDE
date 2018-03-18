@@ -23,15 +23,19 @@ $(document).ready(function(){
 
 var bloques;
 var bases;
-var counter = 0;
-var step = Math.PI * 2 / 360;
-
+var base;
+var bloque;
+var rads = 0;
 
 var gameOptions={
 	gameWidth:480,
 	gameHeight:800,
-	posx:130,
-	posy:500,
+	basex:130,
+	basey:500,
+	bloquex:-100,
+	bloquey:445,
+	range:1.2,
+	step: Math.PI*1/180 // 1 radianes
 }
 var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.AUTO, 'game');
 
@@ -67,8 +71,6 @@ var boot = {
 
 	}
 }
-
-
 var playGame = {
 	
 	create:function() {
@@ -94,7 +96,6 @@ var map ={
 	 update:function() {
 	}
 }
-
 var credits ={
 
 	create:function() {
@@ -107,7 +108,6 @@ var credits ={
 	}
 
 }
-
 var info ={
 
 	create:function() {
@@ -120,10 +120,6 @@ var info ={
 	}
 
 }
-
-var base;
-var bloque;
-
 var initGame={
 	
 	create:function() {
@@ -142,28 +138,21 @@ var initGame={
 		bloques = game.add.group();		
 		bloques.enableBody = true;
 
-		base = bases.create(gameOptions.posx,gameOptions.posy,'base');
-
+		base = bases.create(gameOptions.basex,gameOptions.basey,'base');
 		base.body.setSize(231,55);
-
 		base.body.immovable = true;
 
-
-		
-
-
-
-			bloque = bloques.create(-150,gameOptions.posy-200,'bloque');
-			game.physics.arcade.enable(bloque);
+		bloque = bloques.create(gameOptions.bloquex,gameOptions.bloquey,'bloque');
+		game.physics.arcade.enable(bloque);
+		bloque.body.setSize(231,30);
 
 
 
 
 			//if(clic){}  cuando se haga clic se habilita la gravedad y el bounce
 
-			bloque.body.setSize(231,30);
 			//bloque.body.bounce.y = 0.5;
-			bloque.body.gravity.y= 30;
+			//bloque.body.gravity.y= 30;
 			
 		
 		//game.debug.body(bloque);
@@ -179,9 +168,17 @@ var initGame={
 		var colision = game.physics.arcade.collide(bloques,bases);
 		game.physics.arcade.collide(bloques,bloques);
 
-		var tStep = Math.sin(counter);
-    	bloque.body.x = 120 + tStep * 200;
-    	counter += step;
+		var tStep = -gameOptions.range*Math.cos(rads)+gameOptions.range;
+
+		bloque.body.x = -100 +tStep * 200;
+
+		if(rads>=(360*gameOptions.step)){
+			rads = 0;
+		}
+		else{
+			rads += gameOptions.step;
+		}
+
 
 	}
 
@@ -228,12 +225,7 @@ function goToOptions() {
 	game.state.start('Boot');
 
 
-/*
-Playgame.prototype = {
 
-	
-}
 
-*/
 
 
