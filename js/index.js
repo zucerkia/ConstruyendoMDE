@@ -26,6 +26,7 @@ var bases;
 var base;
 var bloque;
 var rads = 0;
+var posFinal=0;
 
 var gameOptions={
 	gameWidth:480,
@@ -142,14 +143,13 @@ var initGame={
 		base.body.setSize(231,55);
 		base.body.immovable = true;
 
-		bloque = bloques.create(gameOptions.bloquex,gameOptions.bloquey,'bloque');
+		bloque = bloques.create(gameOptions.bloquex,gameOptions.bloquey-200,'bloque');
 		game.physics.arcade.enable(bloque);
 		bloque.body.setSize(231,30);
 
 
 
 
-			//if(clic){}  cuando se haga clic se habilita la gravedad y el bounce
 
 			//bloque.body.bounce.y = 0.5;
 			//bloque.body.gravity.y= 30;
@@ -161,13 +161,21 @@ var initGame={
 
 		//botones
 		btnOpciones = this.game.add.button(game.world.centerX,game.world.centerY,'btnOpciones',goToOptions,this);
-		btnOpciones.anchor.setTo(-2,7); 	
+		btnOpciones.anchor.setTo(-2,7); 
+		
+		game.input.onTap.add(this.onTap,this);
 	},
 	 update:function() {
 
 		var colision = game.physics.arcade.collide(bloques,bases);
 		game.physics.arcade.collide(bloques,bloques);
 
+		this.moveBloque();
+
+
+
+	},
+	moveBloque: function(){
 		var tStep = -gameOptions.range*Math.cos(rads)+gameOptions.range;
 
 		bloque.body.x = -100 +tStep * 200;
@@ -178,16 +186,23 @@ var initGame={
 		else{
 			rads += gameOptions.step;
 		}
+		
+	},
+	onTap: function(pointer,tap){
+		bloque.body.gravity.y= 30;
 
+	},
+	createBloque: function(){
 
 	}
-
 
 }
 
 var options = {
 
 }
+
+
 
 function goToMap() {
     game.state.start('Map');
