@@ -25,6 +25,7 @@ var bloques;
 var bases;
 var base;
 var bloque;
+var mainBloque;
 var rads = 0;
 var posFinal=0;
 
@@ -143,20 +144,10 @@ var initGame={
 		base.body.setSize(231,55);
 		base.body.immovable = true;
 
-		bloque = bloques.create(gameOptions.bloquex,gameOptions.bloquey-200,'bloque');
-		game.physics.arcade.enable(bloque);
-		bloque.body.setSize(231,30);
+		mainbloque = bloques.create(gameOptions.bloquex,gameOptions.bloquey-200,'bloque');
+		game.physics.arcade.enable(mainbloque);
+		mainbloque.body.setSize(231,30);
 
-
-
-
-
-			//bloque.body.bounce.y = 0.5;
-			//bloque.body.gravity.y= 30;
-			
-		
-		//game.debug.body(bloque);
-		//game.debug.body(base);
 
 
 		//botones
@@ -178,7 +169,9 @@ var initGame={
 	moveBloque: function(){
 		var tStep = -gameOptions.range*Math.cos(rads)+gameOptions.range;
 
-		bloque.body.x = -100 +tStep * 200;
+		var nuevaPos;
+		nuevaPos = mainbloque.body.x = -100 +tStep * 200;
+		posFinal = nuevaPos;
 
 		if(rads>=(360*gameOptions.step)){
 			rads = 0;
@@ -189,10 +182,18 @@ var initGame={
 		
 	},
 	onTap: function(pointer,tap){
-		bloque.body.gravity.y= 30;
+
+		this.createBloque(posFinal);
+		rads=0;
 
 	},
-	createBloque: function(){
+	createBloque: function(posx){
+
+		bloque = bloques.create(posx,gameOptions.bloquey-200,'bloque');
+		game.physics.arcade.enable(bloque);
+		bloque.body.setSize(231,30);
+		bloque.body.gravity.y= 30;
+
 
 	}
 
