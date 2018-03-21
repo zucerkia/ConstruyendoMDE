@@ -22,28 +22,31 @@ $(document).ready(function(){
 */
 
 var bloques;
-var bases;
 var base;
 var bloque;
 var mainBloque;
 var rads = 0;
 var posFinal=0;
-
 var gameOptions={
 	gameWidth:480,
 	gameHeight:800,
-	basex:130,
-	basey:500,
+	//basex:130,
+	basex:250,
+	//basey:500,
+	basey:570,
 	bloquex:-100,
 	bloquey:445,
 	range:1.2,
-	step: Math.PI*1/180 // 1 radianes
+	step: Math.PI*1/180, // 1 radianes
+	debug: true
 }
 var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.AUTO, 'game');
 
 
 var boot = {
 	preload: function(){
+
+
 		game.load.image('fondoInicio', 'img/inicio/fondo.jpg ');
 		game.load.image('imgInicio', 'img/inicio/pantallaDeInicio.png');
 		game.load.spritesheet('btnPlayInicio','img/inicio/playInicio.png',150,111);
@@ -66,6 +69,9 @@ var boot = {
 		game.load.spritesheet('btnOpciones','img/juego/btnOpciones.png');
 		game.load.image('base','img/juego/base.png');
 		game.load.image('bloque','img/juego/bloque.png');
+
+		game.load.physics('physicsData','img/juego/sprites.json');
+
 		
 	},
 	create: function(){
@@ -127,27 +133,55 @@ var initGame={
 	create:function() {
 
 
-		game.physics.startSystem(Phaser.Physics.ARCADE); // se activa la fisica del juego
+		//game.physics.startSystem(Phaser.Physics.ARCADE); // se activa la fisica del juego
+		game.physics.startSystem(Phaser.Physics.P2JS);
+		game.physics.p2.gravity.y=100;
 
 
 		game.add.sprite(0, 0,'fondoJuego');
 		game.add.sprite(0, 0,'escenario');
 		
-		bases = game.add.group();		
-		bases.enableBody = true;
+		//bases = game.add.group();
+		mainBloque = game.add.sprite(gameOptions.bloquex,gameOptions.bloquey-200,'bloque');
+		base = game.add.sprite(gameOptions.basex,gameOptions.basey,'base');
+
 		
 
-		bloques = game.add.group();		
-		bloques.enableBody = true;
+		game.physics.p2.enable([mainBloque,base],gameOptions.debug);
+		game.physics.p2.gravity.y=300;
 
-		base = bases.create(gameOptions.basex,gameOptions.basey,'base');
-		base.body.setSize(231,55);
-		base.body.immovable = true;
+		mainBloque.body.kinematic = true;
+		mainBloque.body.clearShapes();
+		mainBloque.body.loadPolygon('physicsData','bloque');
 
-		mainbloque = bloques.create(gameOptions.bloquex,gameOptions.bloquey-200,'bloque');
-		game.physics.arcade.enable(mainbloque);
-		mainbloque.body.setSize(231,30);
+		base.body.kinematic = true;
+		base.body.clearShapes();
+		base.body.loadPolygon('physicsData','base');
+		
+		//base.enableBody = true;
 
+
+		
+
+		bloques = game.add.physicsGroup(Phaser.Physics.P2JS);
+		//bloques = game.add.group();
+		//bloques.physics.p2.enable(bloques,gameOptions.debug);
+
+		//bloques.body.clearShapes();
+		//bloques.body.loadPolygon('physicsData','bloque');		
+		//bloques.enableBody = true;
+
+		//base = bases.create(gameOptions.basex,gameOptions.basey,'base');
+		//base.body.setSize(231,55);
+		//base.body.immovable = true;
+
+
+		//bloque = game.add.sprite(gameOptions.bloquex+110,gameOptions.bloquey-200,'bloque');
+		//mainBloque = bloques.create(gameOptions.bloquex,gameOptions.bloquey-200,'bloque');
+		//mainBloque.body.clearShapes();
+		//mainBloque.body.loadPolygon('physicsData','bloque');
+
+		
 
 
 		//botones
@@ -157,21 +191,19 @@ var initGame={
 		game.input.onTap.add(this.onTap,this);
 	},
 	 update:function() {
-
-		var colision = game.physics.arcade.collide(bloques,bases);
-		game.physics.arcade.collide(bloques,bloques);
+		// var tap=false;
+		// var colisionBase = game.physics.arcade.collide(bloques,bases);
+		// var colisionCaja = game.physics.arcade.collide(bloques,bloques);
 
 		this.moveBloque();
-
 
 
 	},
 	moveBloque: function(){
 		var tStep = -gameOptions.range*Math.cos(rads)+gameOptions.range;
 
-		var nuevaPos;
-		nuevaPos = mainbloque.body.x = -100 +tStep * 200;
-		posFinal = nuevaPos;
+		
+		posFinal = mainBloque.body.x = -100 +tStep * 200; //-----
 
 		if(rads>=(360*gameOptions.step)){
 			rads = 0;
@@ -183,16 +215,19 @@ var initGame={
 	},
 	onTap: function(pointer,tap){
 
-		this.createBloque(posFinal);
+		this.createBloque(posFinal,mainBloque.body.y);
 		rads=0;
+		//mainBloque.body.y -=55;
+
+		//return true;
 
 	},
-	createBloque: function(posx){
+	createBloque: function(posx,posy){
 
-		bloque = bloques.create(posx,gameOptions.bloquey-200,'bloque');
-		game.physics.arcade.enable(bloque);
-		bloque.body.setSize(231,30);
-		bloque.body.gravity.y= 30;
+		bloque = bloques.create(posx,posy,'bloque');
+		game.physics.p2.enable(bloque,gameOptions.debug);
+		bloque.body.clearShapes();
+		bloque.body.loadPolygon('physicsData','bloque');
 
 
 	}
