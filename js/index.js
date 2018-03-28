@@ -71,6 +71,9 @@ var boot = {
 		game.load.image('base','img/juego/base.png');
 		game.load.image('bloque','img/juego/bloque.png');
 
+		game.load.image('score','img/final/score.png');
+		game.load.spritesheet('btnReiniciar','img/final/reiniciar.png');
+
 		game.load.physics('physicsData','img/juego/sprites.json');
 
 		
@@ -175,6 +178,8 @@ var initGame={
 		this.moveBloque();
 
 
+
+
 	},
 	moveBloque: function(){
 		var tStep = -gameOptions.range*Math.cos(rads)+gameOptions.range;
@@ -187,6 +192,14 @@ var initGame={
 		}
 		else{
 			rads += gameOptions.step;
+		}
+		
+	},
+
+	hit: function(body,shapeA,shapeB,equation){
+
+		if(body=== null){
+			game.state.start('End');
 		}
 		
 	},
@@ -209,6 +222,9 @@ var initGame={
 		bloque.body.velocity.y = 0;
 		bloque.body.mass =300;
 
+		bloque.body.onBeginContact.add(this.hit,this);
+
+
 
 	}
 
@@ -216,6 +232,13 @@ var initGame={
 
 var options = {
 
+}
+
+var end ={
+	create: function(){
+		game.add.sprite(0, 0,'score');
+		// game.add.sprite(0, 0,'escenario');
+	}
 }
 
 
@@ -246,6 +269,7 @@ function goToOptions() {
 	game.state.add('Info', info);
 	game.state.add('InitGame', initGame);
 	game.state.add('Options', options);
+	game.state.add('End',end);
 
 	
 
