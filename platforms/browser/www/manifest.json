@@ -1,9 +1,9 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "HelloWorld",
-  "short_name": "HelloWorld",
-  "version": "com.example.hello",
+  "name": "ConstruyeMDE",
+  "short_name": "ConstruyeMDE",
+  "version": "com.upb.ConstruyeMDE",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "author": "Apache Cordova Team",
   "icons": [],

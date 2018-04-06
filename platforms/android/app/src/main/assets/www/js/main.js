@@ -1,10 +1,5 @@
 document.addEventListener("deviceready", onDeviceReady, false);
-//	100% of the browser window - see Boot.js for additional configuration
-// var game = new Phaser.Game("100%", "100%", Phaser.AUTO);
-// game.global = {
-// 	//Global Vars 
 
-// }
 
 var bloques;
 var base;
@@ -26,10 +21,13 @@ var gameOptions={
 	debug: false,
 	gravity:300
 }
-var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.AUTO, 'game');
+var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.CANVAS, 'game');
 
 
 var boot = {
+	init: function (){
+        // game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+    },
 	preload: function(){
 
 
@@ -39,8 +37,8 @@ var boot = {
 
 		game.load.image('fondoMapa', 'img/fondoMapa.jpg ');
 		game.load.spritesheet('btnPlayMapa','img/play.png');
-		game.load.spritesheet('btnCreditosMapa','img/creditos.png');
-		game.load.spritesheet('btnInfoMapa','img/informacion.png');
+		game.load.spritesheet('btnCreditosMapa','img/btnCreditos.png');
+		game.load.spritesheet('btnInfoMapa','img/btnInformacion.png');
 
 		game.load.image('fondoMapa', 'img/fondoMapa.jpg ');
 		game.load.image('creditos','img/creditos.png ');
@@ -237,16 +235,9 @@ var end ={
 		btnReiniciar = this.game.add.button(game.world.centerX,game.world.centerY,'btnReiniciar',goToGame,this);
 		btnReiniciar.anchor.setTo(0,0);
 
-		// game.add.sprite(0, 0,'escenario');
 	}
 }
 
-// var end ={
-// 	create: function(){
-// 		game.add.sprite(0, 0,'score');
-// 		// game.add.sprite(0, 0,'escenario');
-// 	}
-// }
 
 
 
@@ -281,18 +272,10 @@ function goToOptions() {
 	
 
 
-	// game.state.start('Boot');
-
-//	Add the States your game has.
-	//	You don't have to do this in the html, it could be done in your Boot state too, but for simplicity I'll keep it here.
-	// game.state.add('Boot', BasicGame.Boot);
-	// game.state.add('Preloader', BasicGame.Preloader);
-	// game.state.add('MainMenu', BasicGame.MainMenu);
-	// game.state.add('Game', BasicGame.Game);
+	
 
 function onDeviceReady() {
-    // Now safe to use device APIs    
-    //	Now start the Boot state.
+   
 	game.state.start('Boot');
 }
 

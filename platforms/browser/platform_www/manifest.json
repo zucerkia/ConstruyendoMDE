@@ -1,6 +1,6 @@
 {
-  "name": "HelloWorld",
-  "short_name": "HelloWorld",
+  "name": "ConstruyeMDE",
+  "short_name": "ConstruyeMDE",
   "description": "Description of your app from template",
   "start_url": "index.html",
   "scope": "index.html",

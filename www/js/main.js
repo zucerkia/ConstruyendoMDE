@@ -21,10 +21,13 @@ var gameOptions={
 	debug: false,
 	gravity:300
 }
-var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.AUTO, 'game');
+var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.CANVAS, 'game');
 
 
 var boot = {
+	init: function (){
+        // game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+    },
 	preload: function(){
 
 
@@ -34,8 +37,8 @@ var boot = {
 
 		game.load.image('fondoMapa', 'img/fondoMapa.jpg ');
 		game.load.spritesheet('btnPlayMapa','img/play.png');
-		game.load.spritesheet('btnCreditosMapa','img/creditos.png');
-		game.load.spritesheet('btnInfoMapa','img/informacion.png');
+		game.load.spritesheet('btnCreditosMapa','img/btnCreditos.png');
+		game.load.spritesheet('btnInfoMapa','img/btnInformacion.png');
 
 		game.load.image('fondoMapa', 'img/fondoMapa.jpg ');
 		game.load.image('creditos','img/creditos.png ');
