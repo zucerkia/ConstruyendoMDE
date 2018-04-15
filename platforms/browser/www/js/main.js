@@ -26,7 +26,7 @@ var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser
 
 var boot = {
 	init: function (){
-        // game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     },
 	preload: function(){
 
@@ -125,10 +125,18 @@ var initGame={
 		game.physics.p2.gravity.y= gameOptions.gravity;
 		game.physics.p2.friction = 100;
 
+		game.world.setBounds(0, 0, gameOptions.gameWidth, 1920);
+		//tileSprite?
 
 
-		game.add.sprite(0, 0,'fondoJuego');
-		game.add.sprite(0, 0,'escenario');
+
+
+
+		fondo = game.add.sprite(0, 0,'fondoJuego');
+		escenario = game.add.sprite(0, 0,'escenario');
+
+		fondo.fixedToCamera = true;
+		// escenario.fixedToCamera = true;
 		
 		base = game.add.sprite(gameOptions.basex,gameOptions.basey,'base');
 		game.physics.p2.enable(base,gameOptions.debug);
@@ -148,6 +156,8 @@ var initGame={
 		mainBloque.body.clearShapes();
 		mainBloque.body.loadPolygon('physicsData','bloque');
 		mainBloque.body.mass=30000;
+
+		game.camera.follow(mainBloque);
 		
 		//botones
 		btnOpciones = this.game.add.button(game.world.centerX,game.world.centerY,'btnOpciones',goToOptions,this);
@@ -214,7 +224,7 @@ var initGame={
 		bloque.body.loadPolygon('physicsData','bloque');
 		bloque.body.velocity.y = 0;
 		bloque.body.mass =300;
-		bloque.body.onBeginContact.add(this.hit,this);
+		//bloque.body.onBeginContact.add(this.hit,this);
 
 
 	}

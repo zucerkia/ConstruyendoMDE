@@ -26,7 +26,7 @@ var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser
 
 var boot = {
 	init: function (){
-        // game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     },
 	preload: function(){
 
