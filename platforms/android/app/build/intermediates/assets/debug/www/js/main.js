@@ -7,19 +7,21 @@ var bloque;
 var mainBloque;
 var rads = 0;
 var posFinal=0;
+var score=0;
+var limit=4; //num de bloques necesarios para mover la camara
+
 var gameOptions={
 	gameWidth:480,
 	gameHeight:800,
-	//basex:130,
 	basex:250,
-	//basey:500,
-	basey:570,
+	basey:200,
 	bloquex:-90,
-	bloquey:515,
+	bloquey:245,
 	range:1.6,
 	step: Math.PI*1/180, // 1 radianes
 	debug: false,
-	gravity:300
+	gravity:300,
+	worldHeight:6000
 }
 var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.CANVAS, 'game');
 
@@ -125,12 +127,20 @@ var initGame={
 		game.physics.p2.gravity.y= gameOptions.gravity;
 		game.physics.p2.friction = 100;
 
+		game.world.setBounds(0, 0, gameOptions.gameWidth, gameOptions.worldHeight);
+		//tileSprite?
 
 
-		game.add.sprite(0, 0,'fondoJuego');
-		game.add.sprite(0, 0,'escenario');
+		game.stage.backgroundColor = '#fff266';
+
+
+		// fondo = game.add.sprite(0,gameOptions.worldHeight-gameOptions.gameHeight,'fondoJuego');
+		escenario = game.add.sprite(0,gameOptions.worldHeight-gameOptions.gameHeight,'escenario');
+
+		// se pisiciona la camara en el final del mundo del juego
+		game.camera.y= gameOptions.worldHeight;
 		
-		base = game.add.sprite(gameOptions.basex,gameOptions.basey,'base');
+		base = game.add.sprite(gameOptions.basex,gameOptions.worldHeight-gameOptions.basey,'base');
 		game.physics.p2.enable(base,gameOptions.debug);
 
 		
@@ -141,16 +151,17 @@ var initGame={
 		
 		bloques = game.add.physicsGroup(Phaser.Physics.P2JS);
 		
-		mainBloque = game.add.sprite(gameOptions.bloquex,gameOptions.bloquey,'bloque');
+		mainBloque = game.add.sprite(gameOptions.bloquex,gameOptions.worldHeight-gameOptions.bloquey,'bloque');
 		game.physics.p2.enable(mainBloque,gameOptions.debug);
 		
 		mainBloque.body.static = true;
 		mainBloque.body.clearShapes();
 		mainBloque.body.loadPolygon('physicsData','bloque');
 		mainBloque.body.mass=30000;
+
 		
 		//botones
-		btnOpciones = this.game.add.button(game.world.centerX,game.world.centerY,'btnOpciones',goToOptions,this);
+		btnOpciones = this.game.add.button(game.world.centerX,gameOptions.worldHeight-game.world.centerY,'btnOpciones',goToOptions,this);
 		btnOpciones.anchor.setTo(-2,7); 
 		
 		game.input.onTap.add(this.onTap,this);
@@ -159,7 +170,9 @@ var initGame={
 		
 
 		this.moveBloque();
-
+		// fondo.y=game.camera.y;
+		// fondo.tilePosition.x += 2;
+		// console.log(game.camera.y);
 
 	},
 	moveBloque: function(){
@@ -200,9 +213,10 @@ var initGame={
 		else{
 			rads=Math.PI;
 		}
-		mainBloque.body.y -=28;
-
-		//return true;
+		mainBloque.body.y -=30;
+		score++;
+		console.log(score);
+	
 
 	},
 	createBloque: function(posx,posy){
@@ -214,6 +228,14 @@ var initGame={
 		bloque.body.loadPolygon('physicsData','bloque');
 		bloque.body.velocity.y = 0;
 		bloque.body.mass =300;
+
+		
+
+		if(score==limit){
+			game.camera.follow(bloque);
+			limit+=4;
+			console.log('limte:'+ limit);
+		}
 		bloque.body.onBeginContact.add(this.hit,this);
 
 

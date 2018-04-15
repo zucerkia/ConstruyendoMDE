@@ -7,7 +7,9 @@ var bloque;
 var mainBloque;
 var rads = 0;
 var posFinal=0;
+var bestScore;
 var score=0;
+var scoreText;
 var limit=4; //num de bloques necesarios para mover la camara
 
 var gameOptions={
@@ -21,14 +23,17 @@ var gameOptions={
 	step: Math.PI*1/180, // 1 radianes
 	debug: false,
 	gravity:300,
-	worldHeight:6000
+	worldHeight:6000,
+	localStorageName: "construyeMDE"
 }
 var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.CANVAS, 'game');
 
 
 var boot = {
 	init: function (){
-         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+		 game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+		 bestScore = localStorage.getItem(gameOptions.localStorageName) == null ? localStorage.setItem(gameOptions.localStorageName, 0 ) : JSON.parse(localStorage.getItem(gameOptions.localStorageName));
+
     },
 	preload: function(){
 
@@ -122,22 +127,21 @@ var initGame={
 	create:function() {
 
 
+
 		 // se activa la fisica del juego
 		game.physics.startSystem(Phaser.Physics.P2JS);
 		game.physics.p2.gravity.y= gameOptions.gravity;
 		game.physics.p2.friction = 100;
 
 		game.world.setBounds(0, 0, gameOptions.gameWidth, gameOptions.worldHeight);
-		//tileSprite?
-
-
+	
 		game.stage.backgroundColor = '#fff266';
 
 
 		// fondo = game.add.sprite(0,gameOptions.worldHeight-gameOptions.gameHeight,'fondoJuego');
 		escenario = game.add.sprite(0,gameOptions.worldHeight-gameOptions.gameHeight,'escenario');
 
-		// se pisiciona la camara en el final del mundo del juego
+		// se posiciona la camara en el final del mundo del juego
 		game.camera.y= gameOptions.worldHeight;
 		
 		base = game.add.sprite(gameOptions.basex,gameOptions.worldHeight-gameOptions.basey,'base');
@@ -163,6 +167,11 @@ var initGame={
 		//botones
 		btnOpciones = this.game.add.button(game.world.centerX,gameOptions.worldHeight-game.world.centerY,'btnOpciones',goToOptions,this);
 		btnOpciones.anchor.setTo(-2,7); 
+
+
+		scoreText = game.add.text(0, 0, "SCORE: "+score, { font: "32px Arial", fill: "#000", align: "center" });
+    	scoreText.fixedToCamera = true;
+		scoreText.cameraOffset.setTo(50, 10);
 		
 		game.input.onTap.add(this.onTap,this);
 	},
@@ -170,10 +179,9 @@ var initGame={
 		
 
 		this.moveBloque();
-		// fondo.y=game.camera.y;
-		// fondo.tilePosition.x += 2;
-		// console.log(game.camera.y);
+		scoreText.setText("SCORE: "+score);
 
+		
 	},
 	moveBloque: function(){
 		var tStep = -gameOptions.range*Math.cos(rads)+gameOptions.range;
@@ -191,13 +199,12 @@ var initGame={
 	},
 	hit: function(body,shapeA,shapeB,equation){
 
-		//score--;
 		if(body=== null){
-			
+
+			if(score>bestScore){
+				localStorage.setItem(gameOptions.localStorageName, score);
+			}
 			game.state.start('End');
-
-			//guardar score
-
 			score=0;
 		}
 		
@@ -215,7 +222,6 @@ var initGame={
 		}
 		mainBloque.body.y -=30;
 		score++;
-		console.log(score);
 	
 
 	},
@@ -234,12 +240,12 @@ var initGame={
 		if(score==limit){
 			game.camera.follow(bloque);
 			limit+=4;
-			console.log('limte:'+ limit);
 		}
 		bloque.body.onBeginContact.add(this.hit,this);
 
 
-	}
+	},
+
 
 }
 
