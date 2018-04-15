@@ -7,15 +7,16 @@ var bloque;
 var mainBloque;
 var rads = 0;
 var posFinal=0;
+var score=0;
+var limit=4; //num de bloques necesarios para mover la camara
+
 var gameOptions={
 	gameWidth:480,
 	gameHeight:800,
-	//basex:130,
 	basex:250,
-	//basey:500,
 	basey:200,
 	bloquex:-90,
-	bloquey:242,
+	bloquey:245,
 	range:1.6,
 	step: Math.PI*1/180, // 1 radianes
 	debug: false,
@@ -130,10 +131,10 @@ var initGame={
 		//tileSprite?
 
 
+		game.stage.backgroundColor = '#fff266';
 
 
-
-		fondo = game.add.sprite(0,gameOptions.worldHeight-gameOptions.gameHeight,'fondoJuego');
+		// fondo = game.add.sprite(0,gameOptions.worldHeight-gameOptions.gameHeight,'fondoJuego');
 		escenario = game.add.sprite(0,gameOptions.worldHeight-gameOptions.gameHeight,'escenario');
 
 		// se pisiciona la camara en el final del mundo del juego
@@ -169,6 +170,7 @@ var initGame={
 		
 
 		this.moveBloque();
+		// fondo.y=game.camera.y;
 		// fondo.tilePosition.x += 2;
 		// console.log(game.camera.y);
 
@@ -211,11 +213,10 @@ var initGame={
 		else{
 			rads=Math.PI;
 		}
-		mainBloque.body.y -=28;
-		// game.camera.y +=2;
-		// base.body.y+=28;
-
-		//return true;
+		mainBloque.body.y -=30;
+		score++;
+		console.log(score);
+	
 
 	},
 	createBloque: function(posx,posy){
@@ -228,8 +229,14 @@ var initGame={
 		bloque.body.velocity.y = 0;
 		bloque.body.mass =300;
 
-		game.camera.follow(bloque);
-		//bloque.body.onBeginContact.add(this.hit,this);
+		
+
+		if(score==limit){
+			game.camera.follow(bloque);
+			limit+=4;
+			console.log('limte:'+ limit);
+		}
+		bloque.body.onBeginContact.add(this.hit,this);
 
 
 	}
