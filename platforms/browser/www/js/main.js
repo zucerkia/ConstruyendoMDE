@@ -7,7 +7,7 @@ var bloque;
 var mainBloque;
 var rads = 0;
 var posFinal=0;
-var bestScore;
+var bestScore=0;
 var score=0;
 var scoreText;
 var limit=4; //num de bloques necesarios para mover la camara
@@ -164,16 +164,18 @@ var initGame={
 		mainBloque.body.mass=30000;
 
 		
-		//botones
-		btnOpciones = this.game.add.button(game.world.centerX,gameOptions.worldHeight-game.world.centerY,'btnOpciones',goToOptions,this);
-		btnOpciones.anchor.setTo(-2,7); 
-
-
+		
 		scoreText = game.add.text(0, 0, "SCORE: "+score, { font: "32px Arial", fill: "#000", align: "center" });
     	scoreText.fixedToCamera = true;
 		scoreText.cameraOffset.setTo(50, 10);
 		
-		game.input.onTap.add(this.onTap,this);
+		game.input.onDown.add(this.onTap,this);
+
+		//botones
+		btnOpciones = this.game.add.button(game.world.centerX,gameOptions.worldHeight,'btnOpciones',this.managePause,this);
+		btnOpciones.anchor.setTo(-2,7); 
+
+
 	},
 	 update:function() {
 		
@@ -199,6 +201,7 @@ var initGame={
 	},
 	hit: function(body,shapeA,shapeB,equation){
 
+
 		if(body=== null){
 
 			if(score>bestScore){
@@ -208,6 +211,7 @@ var initGame={
 			score=0;
 		}
 		
+
 	},
 	onTap: function(pointer,tap){
 
@@ -238,7 +242,7 @@ var initGame={
 		
 
 		if(score==limit){
-			game.camera.follow(bloque);
+		game.camera.follow(bloque,Phaser.Camera.FOLLOW_LOCKON, 0.08, 0.08);
 			limit+=4;
 		}
 		bloque.body.onBeginContact.add(this.hit,this);
@@ -246,22 +250,29 @@ var initGame={
 
 	},
 
+	managePause: function(){
+		console.log('pausa');
+	}
+
 
 }
 
-var options = {
+// var options = {
 
-}
+// }
 
 var end ={
 	create: function(){
 
-		game.add.sprite(0, 0,'fondoJuego');
+		game.add.sprite(2, 0,'fondoJuego');
 		game.add.sprite(0, 0,'score');
 
 
-		btnReiniciar = this.game.add.button(game.world.centerX,game.world.centerY,'btnReiniciar',goToGame,this);
-		btnReiniciar.anchor.setTo(0,0);
+		btnReiniciar = game.add.button(0,0,'btnReiniciar',goToGame,this);
+		btnReiniciar = game.add.button(0,0,'btnAtras',goToGame,this);
+
+		btnReiniciar.anchor.setTo(-2,7);
+		limit=0;
 
 	}
 }
@@ -282,9 +293,9 @@ function goToGame() {
 function goToInfo() {
     game.state.start('Info');
 }
-function goToOptions() {
-    game.state.start('Options');
-}
+// function goToOptions() {
+//     game.state.start('Options');
+// }
 
 
 
@@ -294,7 +305,7 @@ function goToOptions() {
 	game.state.add('Credits', credits);
 	game.state.add('Info', info);
 	game.state.add('InitGame', initGame);
-	game.state.add('Options', options);
+// game.state.add('Options', options);
 	game.state.add('End',end);
 
 	
