@@ -168,13 +168,13 @@ var initGame={
 		
 		scoreText = game.add.text(0, 0, "SCORE: "+score, { font: "32px Arial", fill: "#000", align: "center" });
     	scoreText.fixedToCamera = true;
-		scoreText.cameraOffset.setTo(50, 10);
+		scoreText.cameraOffset.setTo(30, 20);
 		
 		game.input.onDown.add(this.onTap,this);
 
 		//botones
-		btnOpciones = this.game.add.button(game.world.centerX,gameOptions.worldHeight,'btnOpciones',this.managePause,this);
-		btnOpciones.anchor.setTo(-2,7);
+		btnOpciones = this.game.add.button(400,20,'btnOpciones',this.managePause,this);
+		// btnOpciones.anchor.setTo(-2,7);
 		btnOpciones.fixedToCamera = true;
 
 
