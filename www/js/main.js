@@ -10,6 +10,7 @@ var posFinal=0;
 var bestScore=0;
 var score=0;
 var scoreText;
+var bestScoreText;
 var limit=4; //num de bloques necesarios para mover la camara
 
 var gameOptions={
@@ -173,7 +174,8 @@ var initGame={
 
 		//botones
 		btnOpciones = this.game.add.button(game.world.centerX,gameOptions.worldHeight,'btnOpciones',this.managePause,this);
-		btnOpciones.anchor.setTo(-2,7); 
+		btnOpciones.anchor.setTo(-2,7);
+		btnOpciones.fixedToCamera = true;
 
 
 	},
@@ -206,6 +208,7 @@ var initGame={
 
 			if(score>bestScore){
 				localStorage.setItem(gameOptions.localStorageName, score);
+				bestScore=score;
 			}
 			game.state.start('End');
 			score=0;
@@ -268,13 +271,18 @@ var end ={
 		game.add.sprite(0, 0,'score');
 
 
-		btnReiniciar = game.add.button(0,0,'btnReiniciar',goToGame,this);
-		btnReiniciar = game.add.button(0,0,'btnAtras',goToGame,this);
+		//btnReiniciar = game.add.button(0,0,'btnReiniciar',goToGame,this);
+		btnReiniciar = game.add.button(200,550,'btnReiniciar',goToGame,this);
+		// btnReiniciar.anchor.setTo(-2,7);
 
-		btnReiniciar.anchor.setTo(-2,7);
+		bestScoreText = game.add.text(330,470, bestScore, { font: "32px Arial", fill: "#fff", align: "center" });
 		limit=0;
 
-	}
+	},
+	// update: function(){
+	// 	bestScoreText.setText(bestScore);
+
+	// }
 }
 
 
