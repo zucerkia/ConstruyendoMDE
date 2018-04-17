@@ -1,6 +1,7 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
-
+var sprites;
+var btnOpciones;
 var bloques;
 var base;
 var bloque;
@@ -170,13 +171,24 @@ var initGame={
     	scoreText.fixedToCamera = true;
 		scoreText.cameraOffset.setTo(30, 20);
 		
-		game.input.onDown.add(this.onTap,this);
+
+
 
 		//botones
-		btnOpciones = this.game.add.button(400,20,'btnOpciones',this.managePause,this);
+		// btnOpciones = game.make.sprite(400,20,'btnOpciones');
+		// btnOpciones.inputEnable = true;
+		// btnOpciones.input.priorityID=1;
+		// btnOpciones.events.onInputDown.add(this.managePause,this);
+		
+		btnOpciones = this.game.add.sprite(400,20,'btnOpciones');
+		game.physics.p2.enable(btnOpciones,gameOptions.debug);
+		btnOpciones.body.static = true;
+		
+		
 		// btnOpciones.anchor.setTo(-2,7);
-		btnOpciones.fixedToCamera = true;
 
+		btnOpciones.fixedToCamera = true;
+		game.input.onDown.add(this.onTap,this);
 
 	},
 	 update:function() {
@@ -216,20 +228,32 @@ var initGame={
 		
 
 	},
-	onTap: function(pointer,tap){
+	onTap: function(sprite){
 
-		var random = Math.random();
+		sprites = game.physics.p2.hitTest(sprite.position,[btnOpciones]);
 
-		this.createBloque(posFinal,mainBloque.body.y);
-		if(random<=0.5){
-			rads=0;
-		}
-		else{
-			rads=Math.PI;
-		}
-		mainBloque.body.y -=30;
-		score++;
-	
+			 
+
+			// console.log(sprite);
+			if(sprites.length === 0){
+
+				var random = Math.random();
+
+				this.createBloque(posFinal,mainBloque.body.y);
+				if(random<=0.5){
+					rads=0;
+				}
+				else{
+					rads=Math.PI;
+				}
+				mainBloque.body.y -=30;
+				score++;
+			}
+			else{
+
+				this.managePause();
+
+			}
 
 	},
 	createBloque: function(posx,posy){
@@ -253,8 +277,10 @@ var initGame={
 
 	},
 
-	managePause: function(){
+	managePause: function(sprite){
+
 		console.log('pausa');
+
 	}
 
 
