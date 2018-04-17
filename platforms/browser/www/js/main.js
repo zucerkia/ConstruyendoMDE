@@ -1,7 +1,8 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
+var btnSeguir;
 var sprites;
-var btnOpciones;
+// var btnOpciones;
 var bloques;
 var base;
 var bloque;
@@ -65,6 +66,9 @@ var boot = {
 
 		game.load.image('score','img/score.png');
 		game.load.spritesheet('btnReiniciar','img/reiniciar.png');
+
+		game.load.image('fondoOpciones','img/fondoOpciones.png');
+		game.load.spritesheet('btnSeguir','img/btnSeguir.png');
 
 		game.load.physics('physicsData','img/sprites.json');
 
@@ -175,18 +179,13 @@ var initGame={
 
 
 		//botones
-		// btnOpciones = game.make.sprite(400,20,'btnOpciones');
-		// btnOpciones.inputEnable = true;
-		// btnOpciones.input.priorityID=1;
-		// btnOpciones.events.onInputDown.add(this.managePause,this);
 		
-		btnOpciones = this.game.add.sprite(400,20,'btnOpciones');
+		
+		btnOpciones = game.add.sprite(400,45,'btnOpciones');
 		game.physics.p2.enable(btnOpciones,gameOptions.debug);
 		btnOpciones.body.static = true;
-		
-		
-		// btnOpciones.anchor.setTo(-2,7);
 
+		
 		btnOpciones.fixedToCamera = true;
 		game.input.onDown.add(this.onTap,this);
 
@@ -230,7 +229,7 @@ var initGame={
 	},
 	onTap: function(sprite){
 
-		sprites = game.physics.p2.hitTest(sprite.position,[btnOpciones]);
+		sprites = game.physics.p2.hitTest(sprite.position,[btnOpciones,btnSeguir]);
 
 			 
 
@@ -279,8 +278,37 @@ var initGame={
 
 	managePause: function(sprite){
 
-		console.log('pausa');
+		
+		game.input.onDown.remove(this.onTap,this);
 
+		bgndOpciones = game.add.sprite(0,game.camera.y,'fondoOpciones');
+		// bgndOpciones.visible=false;
+
+		btnSeguir = game.add.button(80,game.camera.y+140,'btnSeguir',this.manageContinue,this);
+		// btnSeguir.visible=false;
+
+		game.paused = true;
+		btnOpciones.visible=false;
+		// btnSeguir.visible=true;
+		// bgndOpciones.visible=true;
+		
+
+		// console.log('pausa');
+
+	},
+
+	manageContinue: function () {
+		game.paused= false;
+		btnOpciones.visible=true;
+		// btnSeguir.visible=false;
+		// bgndOpciones.visible=false;
+		btnSeguir.destroy();
+		bgndOpciones.destroy();
+
+		game.input.onDown.add(this.onTap,this);
+		
+		
+		
 	}
 
 
