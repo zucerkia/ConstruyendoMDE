@@ -14,7 +14,7 @@ var bloque;
 var mainBloque;
 var rads = 0;
 var posFinal=0;
-var bestScore=0;
+var bestScore;
 var score=0;
 var scoreText;
 var bestScoreText;
@@ -223,8 +223,9 @@ var initGame={
 		if(body=== null){
 
 			if(score>bestScore){
-				localStorage.setItem(gameOptions.localStorageName, score);
-				bestScore=score;
+
+				bestScore=score;				
+				localStorage.setItem(gameOptions.localStorageName, bestScore);
 			}
 			game.state.start('End');
 			score=0;
@@ -337,13 +338,10 @@ var end ={
 		// btnReiniciar.anchor.setTo(-2,7);
 
 		bestScoreText = game.add.text(330,470, bestScore, { font: "32px Arial", fill: "#fff", align: "center" });
+		bestScoreText.setText(bestScore);			
 		limit=0;
 
-	},
-	// update: function(){
-	// 	bestScoreText.setText(bestScore);
-
-	// }
+	}
 }
 
 
