@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Apr 17 23:35:18 COT 2018
+#Wed Apr 18 10:00:08 COT 2018
 5.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 42.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 32.set=ANDROID_RESOURCE
@@ -7,7 +7,7 @@
 52.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 9.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 21.set=ASSET
-39.set=ANDROID_RESOURCE
+39.set=ASSET
 46.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 56.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 10.set=ASSET
@@ -19,7 +19,7 @@
 50.set=ANDROID_RESOURCE
 4.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-port-hdpi-v4\\screen.png
 26.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
-41.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\icono.jpg
+41.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-port-xhdpi-v4\\screen.png
 1.set=ASSET
 36.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 57.set=ANDROID_RESOURCE
@@ -45,7 +45,7 @@
 29.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\mipmap-mdpi-v4\\icon.png
 11.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\fondo.jpg
 53.set=ASSET
-39.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-land-mdpi-v4\\screen.png
+39.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\cordova-js-src\\android\\promptbasednativeapi.js
 6.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 43.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 4.set=ANDROID_RESOURCE
@@ -99,7 +99,7 @@ count=61
 54.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 3.set=ASSET
 20.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
-41.set=ASSET
+41.set=ANDROID_RESOURCE
 59.set=ASSET
 48.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 30.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
@@ -133,7 +133,7 @@ count=61
 33.set=ASSET
 37.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\play.png
 4.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
-41.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
+41.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 22.set=ASSET
 13.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\cordova-js-src\\android\\nativeapiprovider.js
 51.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
@@ -153,7 +153,7 @@ count=61
 58.set=ASSET
 3.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\escenario.png
 25.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
-40.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-port-xhdpi-v4\\screen.png
+40.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-land-mdpi-v4\\screen.png
 35.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 9.set=ANDROID_RESOURCE
 50.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\mipmap-xxxhdpi-v4\\icon.png
@@ -165,7 +165,7 @@ count=61
 11.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 44.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\mipmap-xxhdpi-v4\\icon.png
 36.set=DEX
-39.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
+39.base=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 54.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\cordova-js-src\\exec.js
 25.set=ASSET
 20.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\pantallaDeInicio.png
@@ -182,5 +182,5 @@ count=61
 28.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\btnCreditos.png
 10.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\btnSeguir.png
 5.set=ANDROID_RESOURCE
-38.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\cordova-js-src\\android\\promptbasednativeapi.js
+38.file=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\img\\logo.jpg
 43.set=ASSET
