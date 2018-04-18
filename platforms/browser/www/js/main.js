@@ -1,7 +1,12 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 var btnSeguir;
-var sprites;
+// var btnAtras;
+// var sprites;
+// var btnPlay;
+// var btnPlayMapa;
+// var btnCreditos;
+// var btnInfo;
 // var btnOpciones;
 var bloques;
 var base;
@@ -84,8 +89,8 @@ var playGame = {
 	create:function() {
 		game.add.sprite(0, 0,'fondoInicio');
 		game.add.sprite(0,0,'imgInicio');
-		var btnPlay = this.game.add.button(game.world.centerX,game.world.centerY,'btnPlayInicio',goToMap ,this,1,1,2);
-		btnPlay.anchor.setTo(-0.20,-1.5);
+		btnPlay = this.game.add.button(280,560,'btnPlayInicio',goToMap ,this,1,1,2);
+		// btnPlay.anchor.setTo(-0.20,-1.5);
 	},
 	 update:function() {
 	}
@@ -94,12 +99,12 @@ var map ={
 	
 	create:function() {
 		game.add.sprite(0, 0,'fondoMapa');
-		var btnPlayMapa = game.add.button(game.world.centerX,game.world.centerY,'btnPlayMapa',goToGame,this);
-		btnPlayMapa.anchor.setTo(-0.5,-0.8);
-		var btnCreditos = game.add.button(game.world.centerX,game.world.centerY,'btnCreditosMapa',goToCreditos,this);
-		btnCreditos.anchor.setTo(-0.7,5.5);
-		var btnInfo = game.add.button(game.world.centerX,game.world.centerY,'btnInfoMapa',goToInfo,this);
-		btnInfo.anchor.setTo(2.3,3); 	
+		btnPlayMapa = game.add.button(290,470,'btnPlayMapa',goToGame,this);
+		// btnPlayMapa.anchor.setTo(-0.5,-0.8);
+		btnCreditos = game.add.button(290,25,'btnCreditosMapa',goToCreditos,this);
+		// btnCreditos.anchor.setTo(-0.7,5.5);
+		btnInfo = game.add.button(75,200,'btnInfoMapa',goToInfo,this);
+		// btnInfo.anchor.setTo(2.3,3); 	
 	},
 	 update:function() {
 	}
@@ -109,8 +114,8 @@ var credits ={
 	create:function() {
 		game.add.sprite(0, 0,'fondoMapa');
 		game.add.sprite(0, 0,'creditos');
-		var btnAtras = game.add.button(game.world.centerX,game.world.centerY,'btnAtras',goToMap,this);
-		btnAtras.anchor.setTo(0.3,-2.5); 	
+		btnAtras = game.add.button(200,600,'btnAtras',goToMap,this);
+		// btnAtras.anchor.setTo(0.3,-2.5); 	
 	},
 	 update:function() {
 	}
@@ -121,8 +126,8 @@ var info ={
 	create:function() {
 		game.add.sprite(0, 0,'fondoMapa');
 		game.add.sprite(0, 0,'informacion');
-		var btnAtras = game.add.button(game.world.centerX,game.world.centerY,'btnAtras',goToMap,this);
-		btnAtras.anchor.setTo(0.3,-2.5); 	
+		var btnAtras = game.add.button(200,600,'btnAtras',goToMap,this);
+		// btnAtras.anchor.setTo(0.3,-2.5); 	
 	},
 	 update:function() {
 	}
@@ -326,7 +331,9 @@ var end ={
 
 
 		//btnReiniciar = game.add.button(0,0,'btnReiniciar',goToGame,this);
-		btnReiniciar = game.add.button(200,550,'btnReiniciar',goToGame,this);
+		btnReiniciar = game.add.button(125,550,'btnReiniciar',goToGame,this);
+		btnInicio = game.add.button(290,550,'btnAtras',goToInicio,this);
+		
 		// btnReiniciar.anchor.setTo(-2,7);
 
 		bestScoreText = game.add.text(330,470, bestScore, { font: "32px Arial", fill: "#fff", align: "center" });
@@ -355,9 +362,12 @@ function goToGame() {
 function goToInfo() {
     game.state.start('Info');
 }
-// function goToOptions() {
-//     game.state.start('Options');
-// }
+
+function goToInicio() {
+	// game.state.start('PlayGame');
+	game.state.start('Playgame');
+	
+}
 
 
 
