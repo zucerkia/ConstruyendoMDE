@@ -29,7 +29,7 @@ var gameOptions={
 	bloquey:245,
 	range:1.6,
 	step: Math.PI*1/180, // 1 radianes
-	debug: false,
+	debug: true,
 	gravity:300,
 	worldHeight:6000,
 	localStorageName: "construyeMDE"
