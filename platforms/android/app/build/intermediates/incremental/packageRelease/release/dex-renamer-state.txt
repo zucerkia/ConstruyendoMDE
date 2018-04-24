@@ -1,4 +1,4 @@
-#Wed Apr 18 19:43:41 COT 2018
+#Tue Apr 24 11:24:40 COT 2018
 base.0=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\transforms\\dex\\release\\0
 renamed.0=classes.dex
 file.0=C\:\\Users\\JulianAndresSucerqui\\Desktop\\Apps Moviles\\MDE\\platforms\\android\\app\\build\\intermediates\\transforms\\dex\\release\\0\\classes.dex

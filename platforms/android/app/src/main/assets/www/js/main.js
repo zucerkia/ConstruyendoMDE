@@ -29,7 +29,7 @@ var gameOptions={
 	bloquey:245,
 	range:1.6,
 	step: Math.PI*1/180, // 1 radianes
-	debug: true,
+	debug: false,
 	gravity:100,
 	worldHeight:6000,
 	localStorageName: "construyeMDE",
@@ -231,13 +231,14 @@ var initGame={
 
 		if(body=== null){
 
+			score--;
+
 			if(score>bestScore){
 
 				bestScore=score;				
 				localStorage.setItem(gameOptions.localStorageName, bestScore);
 			}
 			game.state.start('End');
-			score=0;
 		}
 		
 
@@ -343,10 +344,16 @@ var end ={
 		// btnReiniciar.anchor.setTo(-2,7);
 
 		bestScoreText = game.add.text(330,470, bestScore, { font: "32px Arial", fill: "#fff", align: "center" });
-		bestScoreText.setText(bestScore);			
+		// bestScoreText.setText(bestScore);
+		
+		finalScoreText = game.add.text(200,420,'Score: '+ score, { font: "32px Arial", fill: "#fff", align: "center" });
+		// finalScoreText.setText(score);			
+
 
 
 		limit=0;
+		score=0;
+		
 
 	}
 }
