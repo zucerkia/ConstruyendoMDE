@@ -74,7 +74,7 @@
         {
             "density": 2, "friction": 0, "bounce": 0, 
             "filter": { "categoryBits": 1, "maskBits": 65535 },
-            "shape": [   227, 120  ,  1, 119  ,  2, 70  ,  226, 69  ]
+            "shape": [   227, 120  ,  2, 120  ,  2, 70  ,  227, 69  ]
         }
     ]
     , 
@@ -83,7 +83,7 @@
         {
             "density": 2, "friction": 0, "bounce": 0, 
             "filter": { "categoryBits": 1, "maskBits": 65535 },
-            "shape": [   226, 97  ,  2, 96  ,  3, 68  ,  225, 67  ]
+            "shape": [   226, 97  ,  3, 97  ,  3, 68  ,  226, 68  ]
         }
     ]
 }

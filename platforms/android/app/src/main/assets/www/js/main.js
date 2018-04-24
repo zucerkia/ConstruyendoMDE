@@ -14,7 +14,7 @@ var bloque;
 var mainBloque;
 var rads = 0;
 var posFinal=0;
-var bestScore;
+var bestScore=0;
 var score=0;
 var scoreText;
 var bestScoreText;
@@ -29,10 +29,12 @@ var gameOptions={
 	bloquey:245,
 	range:1.6,
 	step: Math.PI*1/180, // 1 radianes
-	debug: false,
-	gravity:300,
+	debug: true,
+	gravity:100,
 	worldHeight:6000,
-	localStorageName: "construyeMDE"
+	localStorageName: "construyeMDE",
+	mass:1000,
+	friction : 200
 }
 var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.CANVAS, 'game');
 
@@ -40,8 +42,15 @@ var game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser
 var boot = {
 	init: function (){
 		 game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-		 bestScore = localStorage.getItem(gameOptions.localStorageName) == null ? localStorage.setItem(gameOptions.localStorageName, 0 ) : JSON.parse(localStorage.getItem(gameOptions.localStorageName));
+		//  bestScore = localStorage.getItem(gameOptions.localStorageName) == null ? localStorage.setItem(gameOptions.localStorageName, bestScore ) : JSON.parse(localStorage.getItem(gameOptions.localStorageName));
+		if(localStorage.getItem(gameOptions.localStorageName) == null){
 
+			localStorage.setItem(gameOptions.localStorageName, bestScore );
+
+		}
+		else{
+		 bestScore =JSON.parse(localStorage.getItem(gameOptions.localStorageName));
+		}
     },
 	preload: function(){
 
@@ -142,7 +151,7 @@ var initGame={
 		 // se activa la fisica del juego
 		game.physics.startSystem(Phaser.Physics.P2JS);
 		game.physics.p2.gravity.y= gameOptions.gravity;
-		game.physics.p2.friction = 100;
+		game.physics.p2.friction = gameOptions.friction;
 
 		game.world.setBounds(0, 0, gameOptions.gameWidth, gameOptions.worldHeight);
 	
@@ -172,7 +181,7 @@ var initGame={
 		mainBloque.body.static = true;
 		mainBloque.body.clearShapes();
 		mainBloque.body.loadPolygon('physicsData','bloque');
-		mainBloque.body.mass=30000;
+		// mainBloque.body.mass=30000;
 
 		
 		
@@ -251,7 +260,7 @@ var initGame={
 				else{
 					rads=Math.PI;
 				}
-				mainBloque.body.y -=30;
+				mainBloque.body.y -=29;
 				score++;
 			}
 			else{
@@ -269,7 +278,7 @@ var initGame={
 		bloque.body.clearShapes();
 		bloque.body.loadPolygon('physicsData','bloque');
 		bloque.body.velocity.y = 0;
-		bloque.body.mass =300;
+		bloque.body.mass =gameOptions.mass;
 
 		
 
@@ -320,10 +329,6 @@ var initGame={
 
 }
 
-// var options = {
-
-// }
-
 var end ={
 	create: function(){
 
@@ -339,6 +344,8 @@ var end ={
 
 		bestScoreText = game.add.text(330,470, bestScore, { font: "32px Arial", fill: "#fff", align: "center" });
 		bestScoreText.setText(bestScore);			
+
+
 		limit=0;
 
 	}
